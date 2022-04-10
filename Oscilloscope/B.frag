@@ -10,14 +10,19 @@ float remap(float low1, float high1, float low2, float high2, float value){
 
 
 void main() {
+	if (iFrame == 0) {
+		c = fg;
+		return;
+	}
+
 	float al = texture(iA, geom_p).r;
 
 	float zz = texture(iSoundR, geom_p.y).r;
 	vec4 new_color = 5.*mix(bg, fg, al);
 	vec4 old_color = texture(iB, geom_p);
 
-	c = mix(old_color, new_color, (remap(-1, 1, 0, 1, zz)));
-	c.a = 1.; // Replaces colo
+	c = mix(old_color, new_color, .3);
+	c.a = 1.; // Replaces color
 }
 
 
